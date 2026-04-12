@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>せゆとゆゆの5年記念旅行 in マレーシア 💕</title>
+    <style>
+        /* パスワード画面 */
+        .password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 25%, #ff9a56 50%, #ffcb52 75%, #ff6b9d 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .password-box {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
+        }
+        .password-box h2 {
+            color: #c44569;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+        .password-box .emoji {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .password-box p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 0.95em;
+        }
+        .password-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #ffe4ec;
+            border-radius: 50px;
+            font-size: 1em;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .password-box input:focus {
+            border-color: #ff6b9d;
+        }
+        .password-box button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .password-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(196,69,105,0.4);
+        }
+        .password-box .error {
+            color: #e74c3c;
+            margin-top: 15px;
+            display: none;
+        }
+        .content-hidden {
+            display: none;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #fff5f8 0%, #f0f8ff 50%, #fff5f8 100%);
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        /* リンクスタイル */
+        a {
+            color: #c44569;
+            text-decoration: none;
+            border-bottom: 1px dotted #ff6b9d;
+        }
+        a:hover {
+            color: #ff6b9d;
+            border-bottom-color: #ff6b9d;
+        }
+        .external-link::after {
+            content: " ↗";
+            font-size: 0.8em;
+        }
+        
+        /* ヘッダー - 5周年記念特別デザイン */
+        .header {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 25%, #ff9a56 50%, #ffcb52 75%, #ff6b9d 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: "✨ 💕 ✨";
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        .header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='2' fill='rgba(255,255,255,0.3)'/%3E%3C/svg%3E") repeat;
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.7; transform: translateX(-50%) scale(1.2); }
+        }
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .header .anniversary-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700 0%, #ffec8b 50%, #ffd700 100%);
+            color: #c44569;
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(255,215,0,0.4);
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(255,215,0,0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,215,0,0.6); }
+        }
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        .header .dates {
+            margin-top: 25px;
+            padding: 15px 40px;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(5px);
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 500;
+            border: 2px solid rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .header .hearts {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        
+        /* セクション */
+        .section {
+            padding: 40px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            font-size: 1.5em;
+            color: #c44569;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(90deg, #ff6b9d, #ffcb52, #ff6b9d) 1;
+            display: inline-block;
+        }
+        
+        /* 日程カード */
+        .day-card {
+            background: #fafafa;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .day-card.option {
+            border: 2px dashed #ffc107;
+            background: #fffef5;
+        }
+        .day-header {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+            padding: 20px 30px;
+            position: relative;
+        }
+        .day-header::after {
+            content: "💕";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+        }
+        .day-header.option {
+            background: linear-gradient(135deg, #ffb347 0%, #ffcc33 100%);
+        }
+        .day-header h3 {
+            font-size: 1.3em;
+            font-weight: 400;
+        }
+        .day-header .day-date {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+        .day-content {
+            padding: 30px;
+        }
+        
+        /* 画像グリッド */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .image-grid img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .image-single {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        /* スポットギャラリー */
+        .spot-gallery {
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff5f8 0%, #f8f9fa 100%);
+            border-radius: 12px;
+            border: 1px solid #ffe4ec;
+        }
+        .spot-gallery-title {
+            font-size: 1.1em;
+            color: #c44569;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ffcce0;
+        }
+        .spot-card {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .spot-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .spot-card img {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        .spot-info {
+            flex: 1;
+        }
+        .spot-info h5 {
+            color: #c44569;
+            margin-bottom: 5px;
+            font-size: 1em;
+        }
+        .spot-info h5 a {
+            color: #c44569;
+            border-bottom: none;
+        }
+        .spot-info p {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
+        }
+        .spot-tag {
+            display: inline-block;
+            background: #e8f4f8;
+            color: #c44569;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin-right: 5px;
+        }
+        .spot-tag.food {
+            background: #ffeaea;
+            color: #e74c3c;
+        }
+        
+        /* スケジュール */
+        .schedule {
+            margin: 20px 0;
+        }
+        .schedule-item {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+        .schedule-time {
+            width: 80px;
+            font-weight: bold;
+            color: #ff6b9d;
+            flex-shrink: 0;
+        }
+        .schedule-content {
+            flex: 1;
+        }
+        .schedule-content .highlight {
+            color: #c44569;
+            font-weight: bold;
+        }
+        .schedule-content .food {
+            color: #e74c3c;
+        }
+        
+        /* ハイライトボックス */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        .highlight-box ul {
+            margin-left: 20px;
+            color: #856404;
+        }
+        
+        /* 警告ボックス */
+        .warning-box {
+            background: linear-gradient(135deg, #ffe6e6 0%, #ffcccc 100%);
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .warning-box h4 {
+            color: #c0392b;
+            margin-bottom: 10px;
+        }
+        .warning-box ul {
+            margin-left: 20px;
+            color: #c0392b;
+        }
+        
+        /* 比較テーブル */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .comparison-table th {
+            background: #1a5f7a;
+            color: white;
+        }
+        .comparison-table .yes {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .comparison-table .no {
+            color: #e74c3c;
+        }
+        
+        /* フライト情報 */
+        .flight-info {
+            background: #e8f4f8;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .flight-row {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #cde5ec;
+        }
+        .flight-row:last-child {
+            border-bottom: none;
+        }
+        .flight-icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+        .flight-details {
+            flex: 1;
+        }
+        .flight-route {
+            font-weight: bold;
+            color: #c44569;
+        }
+        .flight-time {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* ホテル情報 */
+        .hotel-card {
+            background: white;
+            border: 2px solid #159895;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .hotel-card.recommended {
+            border-color: #ffc107;
+            background: linear-gradient(135deg, #fffef5 0%, #fff9e6 100%);
+        }
+        .hotel-card h4 {
+            color: #c44569;
+            margin-bottom: 10px;
+        }
+        .hotel-card .badge {
+            background: #ffc107;
+            color: #856404;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+        .hotel-price {
+            font-size: 1.3em;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .hotel-links {
+            margin-top: 10px;
+        }
+        .hotel-links a {
+            margin-right: 15px;
+            font-size: 0.9em;
+        }
+        
+        /* 予算テーブル */
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .budget-table th, .budget-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .budget-table th {
+            background: #1a5f7a;
+            color: white;
+        }
+        .budget-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .budget-table .total {
+            background: #159895;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* チェックリスト */
+        .checklist-section {
+            margin: 20px 0;
+        }
+        .checklist-section h4 {
+            color: #c44569;
+            margin: 15px 0 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #e8f4f8;
+        }
+        .checklist {
+            columns: 2;
+            column-gap: 30px;
+        }
+        .checklist-item {
+            break-inside: avoid;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #159895;
+            border-radius: 4px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        /* グルメセクション */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .food-item {
+            text-align: center;
+            padding: 15px;
+            background: #fafafa;
+            border-radius: 8px;
+        }
+        .food-item .emoji {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+        .food-item .name {
+            font-weight: bold;
+            color: #c44569;
+        }
+        .food-item .name a {
+            color: #c44569;
+            border-bottom: none;
+        }
+        .food-item .desc {
+            font-size: 0.85em;
+            color: #666;
+        }
+        
+        /* 旅のコツ */
+        .tips-list {
+            margin: 20px 0;
+        }
+        .tips-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+            list-style: none;
+        }
+        .tips-list li::before {
+            content: "💡 ";
+        }
+        .tips-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* フッター - 特別感のあるデザイン */
+        .footer {
+            background: linear-gradient(135deg, #c44569 0%, #ff6b9d 50%, #ffcb52 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+        .footer::before {
+            content: "💕 Happy 5th Anniversary 💕";
+            display: block;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+        }
+        .footer p {
+            opacity: 0.95;
+        }
+        .footer a {
+            color: white;
+            border-bottom-color: rgba(255,255,255,0.5);
+        }
+        
+        /* 印刷用スタイル */
+        /* スマホ用レスポンシブデザイン */
+        @media (max-width: 600px) {
+            .header {
+                padding: 60px 20px;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .header .anniversary-badge {
+                font-size: 0.85em;
+                padding: 6px 18px;
+            }
+            .header .subtitle {
+                font-size: 1em;
+            }
+            .header .dates {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            .section {
+                padding: 25px 20px;
+            }
+            .section-title {
+                font-size: 1.2em;
+            }
+            .day-header {
+                padding: 15px 20px;
+            }
+            .day-header h3 {
+                font-size: 1.1em;
+            }
+            .day-header::after {
+                display: none;
+            }
+            .day-content {
+                padding: 20px;
+            }
+            
+            /* スポットカードを縦並びに */
+            .spot-card {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .spot-card img {
+                width: 100%;
+                height: 180px;
+                border-radius: 10px;
+            }
+            .spot-info {
+                padding: 0;
+            }
+            .spot-info h5 {
+                font-size: 1.05em;
+            }
+            .spot-info p {
+                font-size: 0.9em;
+                line-height: 1.7;
+            }
+            .spot-tag {
+                font-size: 0.75em;
+                padding: 3px 8px;
+            }
+            
+            /* 画像グリッドを1列に */
+            .image-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .image-grid img {
+                height: 180px;
+            }
+            .image-single {
+                height: 200px;
+            }
+            
+            /* フライト情報 */
+            .flight-info {
+                padding: 15px;
+            }
+            
+            /* スケジュール */
+            .schedule-item {
+                flex-wrap: wrap;
+            }
+            .schedule-time {
+                width: 60px;
+                font-size: 0.85em;
+            }
+            .schedule-content {
+                font-size: 0.9em;
+            }
+            
+            /* テーブル */
+            .budget-table, .comparison-table {
+                font-size: 0.85em;
+            }
+            .budget-table th, .budget-table td,
+            .comparison-table th, .comparison-table td {
+                padding: 8px 10px;
+            }
+            
+            /* チェックリスト */
+            .checklist li {
+                font-size: 0.9em;
+                padding: 10px 12px;
+            }
+            
+            /* ホテルカード */
+            .hotel-card {
+                padding: 15px;
+            }
+            .hotel-card h4 {
+                font-size: 1em;
+            }
+            
+            /* フッター */
+            .footer {
+                padding: 40px 20px;
+            }
+            .footer::before {
+                font-size: 1.1em;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .day-card {
+                break-inside: avoid;
+            }
+            a {
+                color: #c44569;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- パスワード画面 -->
+    <div id="passwordScreen" class="password-screen">
+        <div class="password-box">
+            <div class="emoji">💕✈️💕</div>
+            <h2>5th Anniversary Trip</h2>
+            <p>せゆとゆゆの特別な旅行プラン<br>パスワードを入力してね</p>
+            <input type="password" id="passwordInput" placeholder="パスワード" onkeypress="if(event.key==='Enter')checkPassword()">
+            <button onclick="checkPassword()">開く 🔓</button>
+            <p class="error" id="errorMsg">パスワードが違うよ！</p>
+        </div>
+    </div>
+
+    <div id="mainContent" class="container content-hidden">
+        <!-- カバー画像（ペトロナスタワー夜景） -->
+        <div style="width: 100%; height: 300px; background: url('https://images.pexels.com/photos/433989/pexels-photo-433989.jpeg?auto=compress&cs=tinysrgb&w=800') center/cover; position: relative;">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 40px;">
+                <h1 style="color: white; font-size: 2.5em; margin: 0; font-weight: 300;">🇲🇾 マレーシア旅行</h1>
+                <p style="color: rgba(255,255,255,0.9); font-size: 1.2em; margin: 10px 0 0;">KL + ペナン グルメ＆観光の旅</p>
+            </div>
+        </div>
+        
+        <!-- ヘッダー -->
+        <header class="header">
+            <div class="anniversary-badge">🎉 5th Anniversary 🎉</div>
+            <h1>せゆとゆゆの5年記念旅行</h1>
+            <p class="subtitle">in マレーシア 🇲🇾</p>
+            <div class="dates">
+                ✈️ <strong>2026.6.17（水）〜 6.21（日）</strong> ✈️
+            </div>
+            <div class="hearts">💖 💕 💖 💕 💖</div>
+        </header>
+
+        <!-- 旅程サマリー -->
+        <section class="section">
+            <h2 class="section-title">📅 旅程サマリー</h2>
+            
+            <div class="flight-info">
+                <div class="flight-row">
+                    <span class="flight-icon">✈️</span>
+                    <div class="flight-details">
+                        <div class="flight-route">羽田 → <a href="https://www.google.com/search?q=クアラルンプール+観光" target="_blank">クアラルンプール</a></div>
+                        <div class="flight-time">水曜 23:50発 → 木曜 06:15着（<a href="https://www.airasia.com/ja/jp" target="_blank" class="external-link">AirAsia X</a> D7523）</div>
+                    </div>
+                </div>
+                <div class="flight-row">
+                    <span class="flight-icon">🛫</span>
+                    <div class="flight-details">
+                        <div class="flight-route">KL → <a href="https://www.google.com/search?q=ペナン島+観光" target="_blank">ペナン</a></div>
+                        <div class="flight-time">木曜 10:00〜11:00発（<a href="https://www.airasia.com/ja/jp" target="_blank" class="external-link">AirAsia</a> 国内線）</div>
+                    </div>
+                </div>
+                <div class="flight-row">
+                    <span class="flight-icon">🛬</span>
+                    <div class="flight-details">
+                        <div class="flight-route">ペナン → KL</div>
+                        <div class="flight-time">土曜 08:30〜09:00発（AirAsia 国内線）</div>
+                    </div>
+                </div>
+                <div class="flight-row">
+                    <span class="flight-icon">✈️</span>
+                    <div class="flight-details">
+                        <div class="flight-route">クアラルンプール → 羽田</div>
+                        <div class="flight-time">日曜 14:10発 → 22:35着（AirAsia X D7522）</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1日目 -->
+        <section class="section">
+            <h2 class="section-title">📍 詳細スケジュール</h2>
+            
+            <div class="day-card">
+                <div class="day-header">
+                    <p class="day-date">DAY 1 ｜ 水曜夜</p>
+                    <h3>日本出発</h3>
+                </div>
+                <div class="day-content">
+                    <div class="schedule">
+                        <div class="schedule-item">
+                            <span class="schedule-time">23:50</span>
+                            <span class="schedule-content">羽田空港から深夜便で出発（<a href="https://www.airasia.com/ja/jp" target="_blank">AirAsia X</a>）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">機内</span>
+                            <span class="schedule-content">機内泊（約7時間）</span>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h4>💡 機内持ち込み推奨</h4>
+                        <ul>
+                            <li>ネックピロー、アイマスク、耳栓</li>
+                            <li>スリッパ（機内用）</li>
+                            <li>保湿スプレー</li>
+                        </ul>
+                    </div>
+                    
+                    <img class="image-single" src="https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&w=800" alt="飛行機">
+                </div>
+            </div>
+
+            <!-- 2日目 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <p class="day-date">DAY 2 ｜ 木曜</p>
+                    <h3>KL到着 → ペナンへ移動 → ペナン観光</h3>
+                </div>
+                <div class="day-content">
+                    <div class="schedule">
+                        <div class="schedule-item">
+                            <span class="schedule-time">06:15</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=KLIA2+マレーシア" target="_blank">KLIA2</a>到着、入国審査</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">07:00</span>
+                            <span class="schedule-content">両替、SIM購入</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">08:30</span>
+                            <span class="schedule-content">国内線チェックイン</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">10:00</span>
+                            <span class="schedule-content">国内線で<a href="https://www.google.com/search?q=ペナン島+観光" target="_blank">ペナン</a>へ（約1時間）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">12:00</span>
+                            <span class="schedule-content">ペナン到着、ホテルへ移動</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">13:00</span>
+                            <span class="schedule-content food">🍜 <strong><a href="https://www.google.com/search?q=アッサムラクサ+ペナン" target="_blank">アッサムラクサ</a></strong>ランチ</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">14:30</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=ペナン+ストリートアート" target="_blank" class="highlight">ストリートアート巡り</a></span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">16:30</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=クーコンシー+ペナン" target="_blank" class="highlight">クーコンシー（邸公司）</a></span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">17:30</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=クランジェティ+ペナン+桟橋" target="_blank" class="highlight">クランジェティ（桟橋集落）</a></span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">19:00</span>
+                            <span class="schedule-content food">🍜 <strong><a href="https://www.google.com/search?q=ガーニードライブ+ペナン+屋台" target="_blank">ガーニードライブ</a></strong>で屋台ディナー</span>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">※ AirAsia国際線・国内線ともにKLIA2発着なので、ターミナル移動は不要</p>
+                    
+                    <!-- 2日目 スポットギャラリー -->
+                    <div class="spot-gallery">
+                        <h4 class="spot-gallery-title">📸 この日の見どころ</h4>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/1374510/pexels-photo-1374510.jpeg?auto=compress&cs=tinysrgb&w=300" alt="ペナン ストリートアート">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=ペナン+ストリートアート" target="_blank">ストリートアート</a></h5>
+                                <p>リトアニア人アーティストErnest Zacharevicによる壁画が有名。「自転車に乗る子供たち」「バイクに乗る少年」などインスタ映えスポット多数。アルメニアンストリート周辺に集中。</p>
+                                <span class="spot-tag">📍 アルメニアンSt.</span>
+                                <span class="spot-tag">⏱ 1〜2時間</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/2915957/pexels-photo-2915957.jpeg?auto=compress&cs=tinysrgb&w=300" alt="クーコンシー">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=クーコンシー+ペナン+Khoo+Kongsi" target="_blank">クーコンシー（邸公司）</a></h5>
+                                <p>マレーシア最大級の中国式宗祠。豪華な彫刻と装飾が施された建物は圧巻。福建系クー一族の歴史を感じられる。入場料RM10。</p>
+                                <span class="spot-tag">🏛️ 世界遺産</span>
+                                <span class="spot-tag">⏱ 30〜45分</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/30667595/pexels-photo-30667595.jpeg?auto=compress&cs=tinysrgb&w=300" alt="クランジェティ">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=クランジェティ+ペナン+Clan+Jetties" target="_blank">クランジェティ（桟橋集落）</a></h5>
+                                <p>海上に建てられた中国系移民の水上集落。7つの姓（周・林・陳など）ごとに桟橋が分かれている。周氏桟橋（Chew Jetty）が最も観光向け。</p>
+                                <span class="spot-tag">🏛️ 世界遺産</span>
+                                <span class="spot-tag">⏱ 30分</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/35398717/pexels-photo-35398717.jpeg?auto=compress&cs=tinysrgb&w=300" alt="ガーニードライブ">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=ガーニードライブ+ペナン+Gurney+Drive" target="_blank">ガーニードライブ</a> <span class="spot-tag food">🍜 グルメ</span></h5>
+                                <p>ペナン最大のホーカーセンター（屋台街）。アッサムラクサ、チャークイティオ、ロジャックなどペナン名物が一堂に。海沿いで夕日を見ながら食事できる。</p>
+                                <span class="spot-tag">📍 海沿い</span>
+                                <span class="spot-tag">⏱ 1〜2時間</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/18765531/pexels-photo-18765531.jpeg?auto=compress&cs=tinysrgb&w=300" alt="アッサムラクサ">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=アッサムラクサ+ペナン" target="_blank">アッサムラクサ</a> <span class="spot-tag food">🍜 グルメ</span></h5>
+                                <p>ペナン名物！魚ベースの酸っぱ辛いスープ麺。タマリンドの酸味とハーブの香りが特徴。CNNの「世界で最も美味しい料理」7位に選出。</p>
+                                <span class="spot-tag">💰 RM8〜12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3日目 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <p class="day-date">DAY 3 ｜ 金曜</p>
+                    <h3>ペナン終日観光</h3>
+                </div>
+                <div class="day-content">
+                    <div class="schedule">
+                        <div class="schedule-item">
+                            <span class="schedule-time">08:00</span>
+                            <span class="schedule-content food">🍜 <strong><a href="https://www.google.com/search?q=ペナン+飲茶+Dim+Sum" target="_blank">飲茶（Dim Sum）</a></strong>朝食</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">10:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=ペナンヒル+観光" target="_blank" class="highlight">ペナンヒル</a>（ケーブルカー）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">12:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=極楽寺+ケックロクシー+ペナン" target="_blank" class="highlight">極楽寺（ケックロクシー）</a></span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">13:30</span>
+                            <span class="schedule-content food">🍜 <strong><a href="https://www.google.com/search?q=チャークイティオ+ペナン" target="_blank">チャークイティオ</a></strong>ランチ</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">15:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=ジョージタウン+ペナン" target="_blank">ジョージタウン</a>に戻る</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">15:30</span>
+                            <span class="schedule-content">カフェ休憩 or スパ＆マッサージ</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">17:30</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=チュリア通り+ペナン" target="_blank" class="highlight">チュリア通り</a>散策</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">19:00</span>
+                            <span class="schedule-content food">🍜 <strong><a href="https://www.google.com/search?q=ホッケンミー+ペナン" target="_blank">ホッケンミー</a></strong>ディナー</span>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h4>🏔️ この日のハイライト</h4>
+                        <ul>
+                            <li><strong>ペナンヒル</strong>：ケーブルカーで山頂へ、絶景パノラマ</li>
+                            <li><strong>極楽寺</strong>：東南アジア最大級の仏教寺院、カラフルな建築</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 3日目 スポットギャラリー -->
+                    <div class="spot-gallery">
+                        <h4 class="spot-gallery-title">📸 この日の見どころ</h4>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/12300861/pexels-photo-12300861.jpeg?auto=compress&cs=tinysrgb&w=300" alt="ペナンヒル">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=ペナンヒル+Penang+Hill" target="_blank">ペナンヒル（Penang Hill）</a></h5>
+                                <p>標高833mの山頂へケーブルカーで約5分。ジョージタウンと海峡の絶景パノラマが楽しめる。涼しい気候で避暑地としても人気。The Habitat展望デッキもおすすめ。</p>
+                                <span class="spot-tag">🚠 ケーブルカー</span>
+                                <span class="spot-tag">⏱ 2〜3時間</span>
+                                <span class="spot-tag">💰 RM30</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/7998643/pexels-photo-7998643.jpeg?auto=compress&cs=tinysrgb&w=300" alt="極楽寺">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=極楽寺+Kek+Lok+Si+Temple" target="_blank">極楽寺（Kek Lok Si Temple）</a></h5>
+                                <p>東南アジア最大級の仏教寺院。7層の万仏宝塔、巨大な観音像が圧巻。中国・タイ・ミャンマーの建築様式が融合。旧正月のライトアップは必見。</p>
+                                <span class="spot-tag">🛕 寺院</span>
+                                <span class="spot-tag">⏱ 1〜2時間</span>
+                                <span class="spot-tag">💰 無料</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/17244007/pexels-photo-17244007.jpeg?auto=compress&cs=tinysrgb&w=300" alt="チュリア通り">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=チュリア通り+ペナン+Chulia+Street" target="_blank">チュリア通り（Chulia Street）</a></h5>
+                                <p>バックパッカー街として有名なエリア。カフェ、レストラン、バー、ゲストハウスが立ち並ぶ。夜になるとナイトマーケットも出て賑やか。</p>
+                                <span class="spot-tag">🛍️ ショッピング</span>
+                                <span class="spot-tag">🌙 夜がおすすめ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/30708205/pexels-photo-30708205.jpeg?auto=compress&cs=tinysrgb&w=300" alt="飲茶">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=ペナン+飲茶+Dim+Sum" target="_blank">飲茶（Dim Sum）</a> <span class="spot-tag food">🍜 グルメ</span></h5>
+                                <p>朝食の定番！蒸し餃子、焼売、チャーシューまん、春巻きなど点心いろいろ。Tai Tong Restaurant、Ming Court Hong Kong Dim Sumが人気店。</p>
+                                <span class="spot-tag">🕗 朝6時〜14時頃</span>
+                                <span class="spot-tag">💰 RM20〜40</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/6646211/pexels-photo-6646211.jpeg?auto=compress&cs=tinysrgb&w=300" alt="チャークイティオ">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=チャークイティオ+Char+Kway+Teow" target="_blank">チャークイティオ</a> <span class="spot-tag food">🍜 グルメ</span></h5>
+                                <p>ペナンが本場の米麺炒め。卵、エビ、もやし、ニラを強火で炒める。Lorong Selamatの「Siam Road Char Koay Teow」は行列必至の名店。</p>
+                                <span class="spot-tag">📍 Lorong Selamat</span>
+                                <span class="spot-tag">💰 RM8〜12</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/14856123/pexels-photo-14856123.jpeg?auto=compress&cs=tinysrgb&w=300" alt="ホッケンミー">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=ホッケンミー+ペナン+Hokkien+Mee" target="_blank">ホッケンミー</a> <span class="spot-tag food">🍜 グルメ</span></h5>
+                                <p>エビの殻から取った濃厚出汁のスープ麺。ゆで卵、エビ、豚肉、空芯菜がトッピング。Penang RoadやLorong Selamatに名店多数。</p>
+                                <span class="spot-tag">📍 Penang Road</span>
+                                <span class="spot-tag">💰 RM8〜12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4日目 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <p class="day-date">DAY 4 ｜ 土曜</p>
+                    <h3>ペナン → KL → KL終日観光</h3>
+                </div>
+                <div class="day-content">
+                    <div class="schedule">
+                        <div class="schedule-item">
+                            <span class="schedule-time">06:30</span>
+                            <span class="schedule-content">ホテルチェックアウト</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">07:00</span>
+                            <span class="schedule-content">空港へ移動（<a href="https://www.grab.com/my/" target="_blank">Grab</a> 20分）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">08:30</span>
+                            <span class="schedule-content">国内線でKLへ（約1時間）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">10:00</span>
+                            <span class="schedule-content">KL到着（<a href="https://www.google.com/search?q=KLIA2" target="_blank">KLIA2</a>）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">10:30</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=KLIA+Express" target="_blank">KLIA Express</a>で市内へ（33分）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">11:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=KL+Sentral" target="_blank">KL Sentral</a>到着、ロッカーに荷物預け</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">11:15</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=バトゥ洞窟+観光" target="_blank" class="highlight">バトゥ洞窟</a>へ移動（Grab 25分）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">11:40</span>
+                            <span class="schedule-content"><span class="highlight">バトゥ洞窟</span>観光（1.5時間）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">13:10</span>
+                            <span class="schedule-content">KL市内へ戻る（Grab 30分）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">13:40</span>
+                            <span class="schedule-content food">🍜 ランチ</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">14:30</span>
+                            <span class="schedule-content">ホテルでチェックイン＆荷物受け取り</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">15:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=ペトロナスツインタワー+展望台" target="_blank" class="highlight">ペトロナスツインタワー</a>展望台</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">17:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=KLCC公園" target="_blank" class="highlight">KLCC公園</a>散策</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">18:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=クアラルンプール+チャイナタウン" target="_blank" class="highlight">チャイナタウン</a>散策</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">19:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=セントラルマーケット+クアラルンプール" target="_blank" class="highlight">セントラルマーケット</a>でお土産</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">20:00</span>
+                            <span class="schedule-content food">🍜 <strong><a href="https://www.google.com/search?q=アロー通り+屋台" target="_blank">アロー通り</a></strong>で屋台ディナー</span>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">※ KL Sentralのロッカー：荷物1個 RM10〜25（約300〜750円）</p>
+                    
+                    <!-- 4日目 スポットギャラリー -->
+                    <div class="spot-gallery">
+                        <h4 class="spot-gallery-title">📸 この日の見どころ</h4>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/31403934/pexels-photo-31403934.jpeg?auto=compress&cs=tinysrgb&w=300" alt="バトゥ洞窟 黄金像">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=バトゥ洞窟+Batu+Caves" target="_blank">バトゥ洞窟（Batu Caves）</a></h5>
+                                <p>高さ42.7mの黄金のムルガン神像がお出迎え。272段のカラフルな階段を登ると巨大な石灰岩洞窟が。ヒンドゥー教の聖地でタイプーサム祭りの舞台。サルに注意！</p>
+                                <span class="spot-tag">🛕 ヒンドゥー教</span>
+                                <span class="spot-tag">⏱ 1〜1.5時間</span>
+                                <span class="spot-tag">💰 無料</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/433989/pexels-photo-433989.jpeg?auto=compress&cs=tinysrgb&w=300" alt="ペトロナスツインタワー">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=ペトロナスツインタワー+Petronas+Twin+Towers" target="_blank">ペトロナスツインタワー</a></h5>
+                                <p>高さ452m、88階建ての双子タワー。41階のスカイブリッジと86階の展望台から絶景を堪能。夜景は特に美しい。<a href="https://www.petronastwintowers.com.my/" target="_blank">事前予約必須</a>。</p>
+                                <span class="spot-tag">🏙️ ランドマーク</span>
+                                <span class="spot-tag">⏱ 1〜2時間</span>
+                                <span class="spot-tag">💰 RM98</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/6744245/pexels-photo-6744245.jpeg?auto=compress&cs=tinysrgb&w=300" alt="KLCC公園">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=KLCC公園+KLCC+Park" target="_blank">KLCC公園</a></h5>
+                                <p>ペトロナスタワー直下の都市型公園。噴水ショー、子供用プール、ジョギングコースあり。夜はタワーのライトアップが美しい撮影スポット。</p>
+                                <span class="spot-tag">🌳 公園</span>
+                                <span class="spot-tag">⏱ 30分〜1時間</span>
+                                <span class="spot-tag">💰 無料</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/30080792/pexels-photo-30080792.jpeg?auto=compress&cs=tinysrgb&w=300" alt="チャイナタウン ペタリンストリート">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=クアラルンプール+チャイナタウン+Petaling+Street" target="_blank">チャイナタウン（Petaling Street）</a></h5>
+                                <p>KL最古の繁華街。プタリン通りを中心にローカルフード、雑貨、衣類の店が立ち並ぶ。関帝廟やスリ・マハマリアマン寺院も徒歩圏内。</p>
+                                <span class="spot-tag">🛍️ ショッピング</span>
+                                <span class="spot-tag">⏱ 1時間</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/32879561/pexels-photo-32879561.jpeg?auto=compress&cs=tinysrgb&w=300" alt="セントラルマーケット">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=セントラルマーケット+クアラルンプール+Central+Market" target="_blank">セントラルマーケット</a></h5>
+                                <p>1888年創業の歴史的建物。バティック、ピューター、工芸品などマレーシア土産の宝庫。2階にはフードコートも。エアコン完備で涼しい。</p>
+                                <span class="spot-tag">🎁 お土産</span>
+                                <span class="spot-tag">⏱ 1時間</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/30393392/pexels-photo-30393392.jpeg?auto=compress&cs=tinysrgb&w=300" alt="アロー通り">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=アロー通り+Jalan+Alor" target="_blank">アロー通り（Jalan Alor）</a> <span class="spot-tag food">🍜 グルメ</span></h5>
+                                <p>KL最大の屋台街！サテー、海鮮BBQ、ドリアン、フルーツジュースなど200以上の屋台が並ぶ。夕方から深夜まで賑わう。ブキビンタンから徒歩5分。</p>
+                                <span class="spot-tag">📍 ブキビンタン</span>
+                                <span class="spot-tag">🌙 夜がおすすめ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/8250702/pexels-photo-8250702.jpeg?auto=compress&cs=tinysrgb&w=300" alt="サテー">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=サテー+マレーシア+Satay" target="_blank">サテー</a> <span class="spot-tag food">🍜 グルメ</span></h5>
+                                <p>マレーシアの国民的串焼き。鶏肉・牛肉・羊肉をスパイスに漬け込んで炭火焼き。甘いピーナッツソースをつけて食べる。アロー通りで必食！</p>
+                                <span class="spot-tag">💰 RM1/本</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5日目 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <p class="day-date">DAY 5 ｜ 日曜</p>
+                    <h3>帰国</h3>
+                </div>
+                <div class="day-content">
+                    <div class="schedule">
+                        <div class="schedule-item">
+                            <span class="schedule-time">08:00</span>
+                            <span class="schedule-content">ホテルチェックアウト</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">08:30</span>
+                            <span class="schedule-content food">🍜 <a href="https://www.google.com/search?q=クアラルンプール+チャイナタウン+朝食" target="_blank">チャイナタウン</a>で朝食</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">10:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=セントラルマーケット+クアラルンプール" target="_blank">セントラルマーケット</a>でお土産（前日買い忘れ対策）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">11:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=KLIA+Express" target="_blank">KLIA Express</a>で空港へ（33分）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">11:40</span>
+                            <span class="schedule-content">KLIA2到着</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">12:00</span>
+                            <span class="schedule-content">チェックイン</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">12:30</span>
+                            <span class="schedule-content">免税店でラストショッピング</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">14:10</span>
+                            <span class="schedule-content">帰国便出発（AirAsia X D7522）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">22:35</span>
+                            <span class="schedule-content">羽田到着 🎉</span>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">※ 14:10発なので午前中にKL観光の余裕あり！</p>
+                    
+                    <!-- 5日目 お土産ギャラリー -->
+                    <div class="spot-gallery">
+                        <h4 class="spot-gallery-title">🎁 おすすめお土産</h4>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=300" alt="ホワイトコーヒー">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=マレーシア+ホワイトコーヒー+OLD+TOWN" target="_blank">ホワイトコーヒー</a></h5>
+                                <p>マレーシア名物のインスタントコーヒー。マーガリンで焙煎した独特の風味。OLD TOWN、Ah Huat、Super、Ali Cafeが人気ブランド。スーパーで安く買える。</p>
+                                <span class="spot-tag">💰 RM15〜25</span>
+                                <span class="spot-tag">📍 空港・スーパー</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/230477/pexels-photo-230477.jpeg?auto=compress&cs=tinysrgb&w=300" alt="BOH紅茶">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=BOH紅茶+マレーシア+Cameron+Highlands" target="_blank">BOH紅茶</a></h5>
+                                <p>キャメロンハイランド産の高級紅茶。1929年創業のマレーシア最大の紅茶ブランド。フレーバーティーも豊富でお土産に最適。</p>
+                                <span class="spot-tag">💰 RM10〜30</span>
+                                <span class="spot-tag">📍 空港・スーパー</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/3735149/pexels-photo-3735149.jpeg?auto=compress&cs=tinysrgb&w=300" alt="なまこ石鹸">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=マレーシア+なまこ石鹸+Gamat" target="_blank">なまこ石鹸・なまこクリーム</a></h5>
+                                <p>ランカウイ島名産のナマコ（Gamat）を使った美容製品。保湿・美白効果があるとされ、女性へのお土産に人気。石鹸、クリーム、オイルなど。</p>
+                                <span class="spot-tag">💰 RM15〜50</span>
+                                <span class="spot-tag">📍 空港・セントラルマーケット</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/12300861/pexels-photo-12300861.jpeg?auto=compress&cs=tinysrgb&w=300" alt="バティック">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=バティック+マレーシア+Batik" target="_blank">バティック製品</a></h5>
+                                <p>ろうけつ染めの伝統的な布製品。スカーフ、シャツ、バッグ、ポーチなど様々。セントラルマーケットで購入可能。</p>
+                                <span class="spot-tag">💰 RM30〜200</span>
+                                <span class="spot-tag">📍 セントラルマーケット</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/2872755/pexels-photo-2872755.jpeg?auto=compress&cs=tinysrgb&w=300" alt="ドライマンゴー">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=マレーシア+ドライマンゴー" target="_blank">ドライマンゴー・ドライフルーツ</a></h5>
+                                <p>甘くて美味しいドライマンゴー、ドリアンチップス、ジャックフルーツチップスなど。軽くてかさばらないのでバラマキ土産に最適。</p>
+                                <span class="spot-tag">💰 RM10〜20</span>
+                                <span class="spot-tag">📍 空港・スーパー</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- マラッカオプション -->
+        <section class="section">
+            <h2 class="section-title">🔄 オプション：マラッカ日帰り</h2>
+            
+            <p style="margin-bottom: 20px;">4日目に<a href="https://www.google.com/search?q=マラッカ+観光" target="_blank"><strong>マラッカ</strong></a>を入れる場合のスケジュール。<strong style="color: #e74c3c;">かなり忙しいので体力と相談。</strong></p>
+            
+            <img class="image-single" src="https://images.pexels.com/photos/29238004/pexels-photo-29238004.jpeg?auto=compress&cs=tinysrgb&w=800" alt="マラッカ オランダ広場">
+            
+            <div class="day-card option">
+                <div class="day-header option">
+                    <p class="day-date">DAY 4 ｜ 土曜【オプション】</p>
+                    <h3>ペナン → KL → マラッカ日帰り</h3>
+                </div>
+                <div class="day-content">
+                    <div class="schedule">
+                        <div class="schedule-item">
+                            <span class="schedule-time">05:30</span>
+                            <span class="schedule-content">ホテルチェックアウト</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">06:00</span>
+                            <span class="schedule-content">空港へ移動</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">07:00</span>
+                            <span class="schedule-content">国内線でKLへ（早朝便）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">08:30</span>
+                            <span class="schedule-content">KL到着（KLIA2）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">09:00</span>
+                            <span class="schedule-content">KLIA2でロッカーに荷物預け</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">09:30</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=KL+Sentral" target="_blank">KL Sentral</a>へ移動（KLIA Transit 30分）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">10:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=TBSバスターミナル+クアラルンプール" target="_blank">TBSバスターミナル</a>へ移動（Grab 15分）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">10:30</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=マラッカ+バス+KL" target="_blank">マラッカ行きバス</a>（約2時間）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">12:30</span>
+                            <span class="schedule-content">マラッカ到着</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">13:00</span>
+                            <span class="schedule-content food">🍜 <strong><a href="https://www.google.com/search?q=ニョニャ料理+マラッカ" target="_blank">ニョニャ料理</a></strong>ランチ</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">14:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=オランダ広場+スタダイス+マラッカ" target="_blank" class="highlight">オランダ広場（スタダイス）</a></span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">14:30</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=セントポール教会跡+マラッカ" target="_blank" class="highlight">セントポール教会跡</a></span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">15:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=ジョンカーストリート+マラッカ" target="_blank" class="highlight">ジョンカーストリート</a>散策</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">16:00</span>
+                            <span class="schedule-content"><a href="https://www.google.com/search?q=マラッカリバークルーズ" target="_blank" class="highlight">マラッカリバークルーズ</a></span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">17:00</span>
+                            <span class="schedule-content">バスでKLへ（約2時間）</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">19:00</span>
+                            <span class="schedule-content">KL到着</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">19:30</span>
+                            <span class="schedule-content">ホテルチェックイン</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="schedule-time">20:00</span>
+                            <span class="schedule-content food">🍜 <strong><a href="https://www.google.com/search?q=アロー通り+屋台" target="_blank">アロー通り</a></strong>で屋台ディナー</span>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <h4>⚠️ 注意点</h4>
+                        <ul>
+                            <li>早朝便（07:00発）が必要 → <strong>05:30起き</strong></li>
+                            <li>マラッカ滞在は約4時間（駆け足）</li>
+                            <li><strong>ペトロナスタワー、バトゥ洞窟は行けない</strong></li>
+                            <li>体力的にハード</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- マラッカ スポットギャラリー -->
+                    <div class="spot-gallery">
+                        <h4 class="spot-gallery-title">📸 マラッカの見どころ</h4>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/29238004/pexels-photo-29238004.jpeg?auto=compress&cs=tinysrgb&w=300" alt="オランダ広場 赤い建物">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=オランダ広場+マラッカ+Dutch+Square" target="_blank">オランダ広場（Dutch Square）</a></h5>
+                                <p>赤い建物が並ぶマラッカのシンボル。1650年代にオランダが建設したスタダイス（旧市庁舎）、キリスト教会が並ぶ。派手なトライショー（三輪車）も名物。</p>
+                                <span class="spot-tag">🏛️ 世界遺産</span>
+                                <span class="spot-tag">⏱ 30分</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/31332487/pexels-photo-31332487.jpeg?auto=compress&cs=tinysrgb&w=300" alt="セントポール教会">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=セントポール教会+マラッカ+St+Paul+Church" target="_blank">セントポール教会跡</a></h5>
+                                <p>1521年にポルトガルが建設した教会跡。フランシスコ・ザビエルの遺体が一時安置されていた場所。丘の上からマラッカ海峡を一望できる。</p>
+                                <span class="spot-tag">⛪ 歴史</span>
+                                <span class="spot-tag">⏱ 20分</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/5561666/pexels-photo-5561666.jpeg?auto=compress&cs=tinysrgb&w=300" alt="ジョンカーストリート">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=ジョンカーストリート+マラッカ+Jonker+Street" target="_blank">ジョンカーストリート（Jonker Street）</a></h5>
+                                <p>アンティークショップ、カフェ、土産物店が並ぶ繁華街。週末の夜はナイトマーケットが開催されて大賑わい。ニョニャ料理店も多い。</p>
+                                <span class="spot-tag">🛍️ ショッピング</span>
+                                <span class="spot-tag">⏱ 1時間</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/35340124/pexels-photo-35340124.jpeg?auto=compress&cs=tinysrgb&w=300" alt="マラッカリバークルーズ">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=マラッカリバークルーズ+Melaka+River+Cruise" target="_blank">マラッカリバークルーズ</a></h5>
+                                <p>マラッカ川を約45分かけてクルーズ。川沿いの壁画アート、歴史的建造物を眺めながらゆったり。夕暮れ〜夜がおすすめ。</p>
+                                <span class="spot-tag">🚤 クルーズ</span>
+                                <span class="spot-tag">⏱ 45分</span>
+                                <span class="spot-tag">💰 RM30</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/18765531/pexels-photo-18765531.jpeg?auto=compress&cs=tinysrgb&w=300" alt="ニョニャ料理">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=ニョニャ料理+Peranakan+Nyonya" target="_blank">ニョニャ料理</a> <span class="spot-tag food">🍜 グルメ</span></h5>
+                                <p>中国系移民とマレー文化が融合したプラナカン料理。スパイシーで酸味のある独特の味わい。ラクサ、アヤムポンテ、オタオタなどが代表的。</p>
+                                <span class="spot-tag">💰 RM20〜40</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spot-card">
+                            <img src="https://images.pexels.com/photos/7172851/pexels-photo-7172851.jpeg?auto=compress&cs=tinysrgb&w=300" alt="チキンライスボール">
+                            <div class="spot-info">
+                                <h5><a href="https://www.google.com/search?q=チキンライスボール+マラッカ+Chicken+Rice+Ball" target="_blank">チキンライスボール</a> <span class="spot-tag food">🍜 グルメ</span></h5>
+                                <p>マラッカ名物！蒸し鶏と一口サイズに丸めたチキンライス。Famosa Chicken Rice Ball、Chung Wah Chicken Riceが有名店。</p>
+                                <span class="spot-tag">💰 RM10〜15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h4 style="margin: 30px 0 15px; color: #1a5f7a;">📊 どちらを選ぶ？</h4>
+            <table class="comparison-table">
+                <tr>
+                    <th></th>
+                    <th>通常プラン</th>
+                    <th>マラッカオプション</th>
+                </tr>
+                <tr>
+                    <td><strong>起床時間</strong></td>
+                    <td>06:30</td>
+                    <td>05:30</td>
+                </tr>
+                <tr>
+                    <td><strong>ペトロナスタワー</strong></td>
+                    <td class="yes">○ 行ける</td>
+                    <td class="no">✕ 行けない</td>
+                </tr>
+                <tr>
+                    <td><strong>バトゥ洞窟</strong></td>
+                    <td class="yes">○ 行ける</td>
+                    <td class="no">✕ 行けない</td>
+                </tr>
+                <tr>
+                    <td><strong>マラッカ</strong></td>
+                    <td class="no">✕</td>
+                    <td class="yes">○（4時間）</td>
+                </tr>
+                <tr>
+                    <td><strong>疲労度</strong></td>
+                    <td>普通</td>
+                    <td>かなり疲れる</td>
+                </tr>
+                <tr>
+                    <td><strong>おすすめ</strong></td>
+                    <td class="yes">◎</td>
+                    <td>△</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- グルメ -->
+        <section class="section">
+            <h2 class="section-title">🍜 食べるべきグルメ</h2>
+            
+            <div class="image-grid" style="margin-bottom: 20px;">
+                <img src="https://images.pexels.com/photos/35398717/pexels-photo-35398717.jpeg?auto=compress&cs=tinysrgb&w=400" alt="アジア屋台">
+                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400" alt="アジア料理">
+            </div>
+            
+            <h4 style="margin: 20px 0 10px; color: #1a5f7a;">ペナン（2日目・3日目）</h4>
+            <div class="food-grid">
+                <div class="food-item">
+                    <div class="emoji">🍜</div>
+                    <div class="name"><a href="https://www.google.com/search?q=アッサムラクサ+ペナン" target="_blank">アッサムラクサ</a></div>
+                    <div class="desc">酸っぱ辛い魚ベースの麺</div>
+                </div>
+                <div class="food-item">
+                    <div class="emoji">🍳</div>
+                    <div class="name"><a href="https://www.google.com/search?q=チャークイティオ+ペナン" target="_blank">チャークイティオ</a></div>
+                    <div class="desc">米麺の炒め物</div>
+                </div>
+                <div class="food-item">
+                    <div class="emoji">🍲</div>
+                    <div class="name"><a href="https://www.google.com/search?q=ホッケンミー+ペナン" target="_blank">ホッケンミー</a></div>
+                    <div class="desc">エビ出汁のスープ麺</div>
+                </div>
+                <div class="food-item">
+                    <div class="emoji">🥟</div>
+                    <div class="name"><a href="https://www.google.com/search?q=飲茶+Dim+Sum+ペナン" target="_blank">飲茶</a></div>
+                    <div class="desc">朝食に最適</div>
+                </div>
+                <div class="food-item">
+                    <div class="emoji">🥗</div>
+                    <div class="name"><a href="https://www.google.com/search?q=ロジャック+マレーシア" target="_blank">ロジャック</a></div>
+                    <div class="desc">フルーツサラダ</div>
+                </div>
+                <div class="food-item">
+                    <div class="emoji">🍧</div>
+                    <div class="name"><a href="https://www.google.com/search?q=チェンドル+マレーシア" target="_blank">チェンドル</a></div>
+                    <div class="desc">ココナッツミルクのかき氷</div>
+                </div>
+            </div>
+            
+            <h4 style="margin: 30px 0 10px; color: #1a5f7a;">クアラルンプール（4日目）</h4>
+            <div class="food-grid">
+                <div class="food-item">
+                    <div class="emoji">🍢</div>
+                    <div class="name"><a href="https://www.google.com/search?q=サテー+マレーシア" target="_blank">サテー</a></div>
+                    <div class="desc">甘辛い串焼き</div>
+                </div>
+                <div class="food-item">
+                    <div class="emoji">🫓</div>
+                    <div class="name"><a href="https://www.google.com/search?q=ロティチャナイ+マレーシア" target="_blank">ロティチャナイ</a></div>
+                    <div class="desc">インド風パン＋カレー</div>
+                </div>
+                <div class="food-item">
+                    <div class="emoji">🍚</div>
+                    <div class="name"><a href="https://www.google.com/search?q=ナシレマ+マレーシア" target="_blank">ナシレマ</a></div>
+                    <div class="desc">ココナッツご飯、国民食</div>
+                </div>
+                <div class="food-item">
+                    <div class="emoji">🍖</div>
+                    <div class="name"><a href="https://www.google.com/search?q=バクテー+クアラルンプール" target="_blank">バクテー</a></div>
+                    <div class="desc">豚肉のハーブスープ</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ホテル -->
+        <section class="section">
+            <h2 class="section-title">🏨 ホテル</h2>
+            
+            <img class="image-single" src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ホテル プール">
+            
+            <h4 style="margin: 20px 0 10px; color: #1a5f7a;">ペナン（2泊）：<a href="https://www.google.com/search?q=ジョージタウン+ペナン" target="_blank">ジョージタウン</a>中心部がおすすめ</h4>
+            
+            <div class="hotel-card">
+                <h4>lyf ジョージタウン ペナン</h4>
+                <p>★★★★ ｜ 評価 8.7 ｜ 2024年オープン、最新設備、最安</p>
+                <p class="hotel-price">約7,000円/泊</p>
+                <div class="hotel-links">
+                    <a href="https://www.agoda.com/lyf-georgetown-penang/hotel/penang-my.html" target="_blank" class="external-link">Agoda</a>
+                    <a href="https://www.booking.com/searchresults.ja.html?ss=lyf+Georgetown+Penang" target="_blank" class="external-link">Booking.com</a>
+                </div>
+            </div>
+            
+            <div class="hotel-card">
+                <h4>OZO ジョージタウン</h4>
+                <p>★★★★ ｜ 評価 8.6 ｜ 2020年オープン、モダン＆清潔</p>
+                <p class="hotel-price">約11,000円/泊</p>
+                <div class="hotel-links">
+                    <a href="https://www.agoda.com/ja-jp/ozo-george-town-penang/hotel/george-town-my.html" target="_blank" class="external-link">Agoda</a>
+                    <a href="https://www.booking.com/searchresults.ja.html?ss=OZO+George+Town+Penang" target="_blank" class="external-link">Booking.com</a>
+                </div>
+            </div>
+            
+            <div class="hotel-card">
+                <h4>Jen ペナン ジョージタウン</h4>
+                <p>★★★★ ｜ 評価 8.6 ｜ シャングリラ系、プール・ジム完備</p>
+                <p class="hotel-price">約9,100円/泊</p>
+                <div class="hotel-links">
+                    <a href="https://www.agoda.com/ja-jp/hotel-jen-penang-by-shangri-la/hotel/penang-my.html" target="_blank" class="external-link">Agoda</a>
+                    <a href="https://www.booking.com/searchresults.ja.html?ss=Hotel+Jen+Penang+Georgetown" target="_blank" class="external-link">Booking.com</a>
+                </div>
+            </div>
+            
+            <p style="font-size: 0.9em; color: #666; margin: 10px 0;">※ 評価は Booking.com / Agoda / Trip.com / Trivago の平均値</p>
+            
+            <div class="highlight-box">
+                <h4>📍 立地ポイント</h4>
+                <ul>
+                    <li>ストリートアートエリア：徒歩圏内</li>
+                    <li>空港から：<a href="https://www.grab.com/my/" target="_blank">Grab</a> 30〜40分</li>
+                    <li><a href="https://www.google.com/search?q=ガーニードライブ+ペナン" target="_blank">ガーニードライブ</a>（屋台街）：Grab 10分</li>
+                </ul>
+            </div>
+            
+            <h4 style="margin: 30px 0 10px; color: #1a5f7a;">KL（1泊）：<a href="https://www.google.com/search?q=ブキビンタン+クアラルンプール" target="_blank">ブキビンタン</a>エリアがおすすめ</h4>
+            
+            <div class="hotel-card">
+                <h4>スリーピング ライオン スイーツ</h4>
+                <p>★★★ ｜ 評価 8.7 ｜ 2023年オープン、綺麗、屋上プール</p>
+                <p class="hotel-price">約4,400円/泊</p>
+                <div class="hotel-links">
+                    <a href="https://www.agoda.com/ja-jp/sleeping-lion-suites/hotel/kuala-lumpur-my.html" target="_blank" class="external-link">Agoda</a>
+                    <a href="https://www.booking.com/searchresults.ja.html?ss=Sleeping+Lion+Suites+Kuala+Lumpur" target="_blank" class="external-link">Booking.com</a>
+                </div>
+            </div>
+            
+            <div class="hotel-card">
+                <h4>セリア ホテル ブキビンタン</h4>
+                <p>★★★ ｜ 評価 8.2 ｜ モダン、最安</p>
+                <p class="hotel-price">約3,700円/泊</p>
+                <div class="hotel-links">
+                    <a href="https://www.agoda.com/ja-jp/ceria-hotel-bukit-bintang/hotel/kuala-lumpur-my.html" target="_blank" class="external-link">Agoda</a>
+                    <a href="https://www.booking.com/searchresults.ja.html?ss=Ceria+Hotel+Bukit+Bintang" target="_blank" class="external-link">Booking.com</a>
+                </div>
+            </div>
+            
+            <p style="font-size: 0.9em; color: #666; margin: 10px 0;">※ 評価は Booking.com / Agoda / Trip.com の平均値</p>
+            
+            <div class="highlight-box">
+                <h4>📍 立地ポイント</h4>
+                <ul>
+                    <li><a href="https://www.google.com/search?q=アロー通り+クアラルンプール" target="_blank">アロー通り</a>（屋台街）：徒歩5〜15分</li>
+                    <li><a href="https://www.google.com/search?q=ペトロナスツインタワー" target="_blank">ペトロナスタワー</a>：電車 or Grab 10分</li>
+                    <li>KLIA2へ：KL Sentral経由で約50分</li>
+                </ul>
+            </div>
+            
+            <h4 style="margin: 30px 0 10px; color: #1a5f7a;">💡 ホテル予約のコツ</h4>
+            <ul class="tips-list">
+                <li><strong>予約サイト</strong>: <a href="https://www.agoda.com/ja-jp/" target="_blank">Agoda</a>、<a href="https://www.booking.com/ja-jp/" target="_blank">Booking.com</a> がおすすめ（マレーシアはAgoda強い）</li>
+                <li><strong>朝食</strong>: 不要（外で食べたほうが安くて美味しい）</li>
+                <li><strong>キャンセル無料プラン</strong>: 予定変更に備えて選んでおくと安心</li>
+                <li><strong>予約タイミング</strong>: 6月は混むので1〜2ヶ月前がベスト</li>
+            </ul>
+        </section>
+
+        <!-- 予算 -->
+        <section class="section">
+            <h2 class="section-title">💰 予算目安</h2>
+            
+            <h4 style="margin: 0 0 15px; color: #1a5f7a;">1人あたり</h4>
+            <table class="budget-table">
+                <tr>
+                    <th>項目</th>
+                    <th>金額</th>
+                </tr>
+                <tr>
+                    <td>航空券（国際線・深夜便）</td>
+                    <td>約3.5〜7万円</td>
+                </tr>
+                <tr>
+                    <td>航空券（国内線 KL↔ペナン）</td>
+                    <td>約0.8〜1.5万円</td>
+                </tr>
+                <tr>
+                    <td>ホテル（3泊）</td>
+                    <td>約1.5〜4万円</td>
+                </tr>
+                <tr>
+                    <td>食事</td>
+                    <td>約1.5〜2.5万円</td>
+                </tr>
+                <tr>
+                    <td>交通費（バス・<a href="https://www.grab.com/my/" target="_blank">Grab</a>等）</td>
+                    <td>約0.5〜1万円</td>
+                </tr>
+                <tr>
+                    <td>観光・お土産</td>
+                    <td>約1.5〜3万円</td>
+                </tr>
+                <tr class="total">
+                    <td><strong>1人 合計</strong></td>
+                    <td><strong>約9.3〜19万円</strong></td>
+                </tr>
+            </table>
+            
+            <div class="highlight-box" style="margin-top: 20px;">
+                <h4>👥 2人合計の予算</h4>
+                <table style="width: 100%; margin-top: 10px;">
+                    <tr>
+                        <td>節約プラン（LCC・格安ホテル）</td>
+                        <td style="text-align: right; font-weight: bold; color: #27ae60;">約18〜20万円</td>
+                    </tr>
+                    <tr>
+                        <td>標準プラン（LCC・中級ホテル）</td>
+                        <td style="text-align: right; font-weight: bold; color: #1a5f7a;">約25〜30万円</td>
+                    </tr>
+                    <tr>
+                        <td>ゆとりプラン（ANA/JAL・4つ星ホテル）</td>
+                        <td style="text-align: right; font-weight: bold; color: #e74c3c;">約35〜40万円</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
+                ※ 上記はおすすめホテル（lyf ペナン 7,000円/泊 + スリーピングライオン 4,400円/泊）を基準にした場合<br>
+                ※ 航空券は時期により変動。早めの予約で安くなる
+            </p>
+        </section>
+
+        <!-- 事前予約・準備 -->
+        <section class="section">
+            <h2 class="section-title">📋 事前予約・準備</h2>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>項目</th>
+                    <th>状況</th>
+                    <th>備考</th>
+                </tr>
+                <tr style="background: #e8f8e8;">
+                    <td>航空券（国際線）</td>
+                    <td class="yes">✅ 完了</td>
+                    <td>¥151,686（2人分）</td>
+                </tr>
+                <tr>
+                    <td>航空券（国内線 KL↔ペナン）</td>
+                    <td class="no">⬜ 未了</td>
+                    <td><a href="https://www.airasia.com/ja/jp" target="_blank">AirAsia</a>が安い</td>
+                </tr>
+                <tr>
+                    <td>ホテル</td>
+                    <td class="no">⬜ 未了</td>
+                    <td>ペナン2泊、KL1泊</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.petronastwintowers.com.my/" target="_blank">ペトロナスタワー展望台</a></td>
+                    <td class="no">⬜ 未了</td>
+                    <td>事前予約がベター</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.grab.com/my/" target="_blank">Grabアプリ</a>登録</td>
+                    <td class="no">⬜ 未了</td>
+                    <td>日本で事前に登録</td>
+                </tr>
+                <tr>
+                    <td>海外旅行保険</td>
+                    <td class="no">⬜ 未了</td>
+                    <td>クレカ付帯でもOK</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/search?q=マレーシア+SIM+観光客" target="_blank">SIMカード</a></td>
+                    <td class="no">⬜ 未了</td>
+                    <td>KLIA2で購入 or eSIM事前購入（Grab利用に必須）</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/search?q=BFタイプ+変換プラグ" target="_blank">変換プラグ（BFタイプ）</a></td>
+                    <td class="no">⬜ 未了</td>
+                    <td>100均・Amazonで購入（240V、3ピン）</td>
+                </tr>
+            </table>
+            
+            <div class="highlight-box" style="margin-top: 20px;">
+                <h4>🔌 マレーシアの電源について</h4>
+                <ul>
+                    <li><strong>電圧</strong>: 240V（日本は100V）</li>
+                    <li><strong>プラグ</strong>: BFタイプ（イギリス式3ピン）</li>
+                    <li><strong>変圧器</strong>: スマホ・PC充電器は大抵100-240V対応なので不要</li>
+                    <li><strong>注意</strong>: ドライヤー等は海外対応品か確認</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 持ち物チェックリスト -->
+        <section class="section">
+            <h2 class="section-title">✅ 持ち物チェックリスト</h2>
+            
+            <img class="image-single" src="https://images.pexels.com/photos/1282315/pexels-photo-1282315.jpeg?auto=compress&cs=tinysrgb&w=800" alt="旅行準備 パッキング">
+            
+            <div class="checklist-section">
+                <h4>📌 必須</h4>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>パスポート（残存6ヶ月以上）</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>航空券（eチケット）</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>ホテル予約確認書</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>海外旅行保険証</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>クレジットカード</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>現金（日本円→現地で両替）</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checklist-section">
+                <h4>🌙 深夜便対策</h4>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>ネックピロー</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>アイマスク</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>耳栓</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>スリッパ</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>保湿スプレー</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checklist-section">
+                <h4>🎒 現地で便利</h4>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span><a href="https://www.grab.com/my/" target="_blank">Grabアプリ</a>（配車・必須！）</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>現地SIM or ポケットWiFi</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>羽織もの（冷房対策）</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>歩きやすい靴</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>日焼け止め</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span><a href="https://www.google.com/search?q=BFタイプ+変換プラグ" target="_blank">変換プラグ（BFタイプ）</a></span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>折りたたみ傘</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checklist-section">
+                <h4>🛕 寺院訪問用（極楽寺・バトゥ洞窟など）</h4>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>膝が隠れるボトムス</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <span>肩が隠れるトップス</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 旅のコツ -->
+        <section class="section">
+            <h2 class="section-title">💡 旅のコツ</h2>
+            
+            <ul class="tips-list">
+                <li><strong><a href="https://www.grab.com/my/" target="_blank">Grab</a>は必須</strong> - タクシーより安全・安い・便利</li>
+                <li><strong>現金も用意</strong> - 屋台は現金のみが多い</li>
+                <li><strong>水分補給</strong> - 暑いので熱中症注意</li>
+                <li><strong>屋台は行列の店へ</strong> - 地元民が並ぶ店は間違いない</li>
+                <li><strong>冷房対策</strong> - モール・バスは寒いので羽織もの必須</li>
+            </ul>
+        </section>
+
+        <!-- 最後の風景画像 -->
+        <div style="width: 100%; height: 200px; background: url('https://images.pexels.com/photos/31403934/pexels-photo-31403934.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;"></div>
+        
+        <!-- フッター -->
+        <footer class="footer">
+            <p style="font-size: 1.2em;">🇲🇾 素敵な記念旅行になりますように！ 🇲🇾</p>
+            <p style="margin-top: 15px;">せゆとゆゆ、5年間ありがとう ✨</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">必要な有給：木・金の2日間（土日＋有給2日で行ける！）</p>
+            <p style="margin-top: 15px; font-size: 0.8em;">
+                <a href="https://www.airasia.com/ja/jp" target="_blank">AirAsia</a> ｜ 
+                <a href="https://www.agoda.com/ja-jp/" target="_blank">Agoda</a> ｜ 
+                <a href="https://www.grab.com/my/" target="_blank">Grab</a> ｜ 
+                <a href="https://www.google.com/search?q=マレーシア+観光" target="_blank">マレーシア観光情報</a>
+            </p>
+        </footer>
+    </div>
+    <script>
+        // パスワード設定（好きなパスワードに変更してね）
+        const PASSWORD = "seyuyuyu5";
+        
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if (input === PASSWORD) {
+                document.getElementById('passwordScreen').style.display = 'none';
+                document.getElementById('mainContent').classList.remove('content-hidden');
+                // セッション中は記憶
+                sessionStorage.setItem('authenticated', 'true');
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
+        
+        // ページ読み込み時にセッションチェック
+        window.onload = function() {
+            if (sessionStorage.getItem('authenticated') === 'true') {
+                document.getElementById('passwordScreen').style.display = 'none';
+                document.getElementById('mainContent').classList.remove('content-hidden');
+            }
+            document.getElementById('passwordInput').focus();
+        }
+    </script>
+</body>
+</html>
