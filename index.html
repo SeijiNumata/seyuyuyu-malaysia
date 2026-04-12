@@ -829,51 +829,94 @@
             }
         }
 
-        /* メッセージカード */
-        .message-card {
+        /* メッセージモーダル */
+        .message-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+        }
+        .message-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .message-modal {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 60px 40px;
+            padding: 50px 40px;
             text-align: center;
             color: white;
             position: relative;
+            max-width: 500px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            transform: scale(0.8);
+            transition: transform 0.5s;
         }
-        .message-card::before {
+        .message-overlay.show .message-modal {
+            transform: scale(1);
+        }
+        .message-modal::before {
             content: "";
             position: absolute;
-            top: 20px;
+            top: 15px;
             left: 50%;
             transform: translateX(-50%);
             width: 60px;
             height: 1px;
             background: #d4af37;
         }
-        .message-card::after {
+        .message-modal::after {
             content: "";
             position: absolute;
-            bottom: 20px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
             width: 60px;
             height: 1px;
             background: #d4af37;
         }
-        .message-card h3 {
+        .message-modal h3 {
             color: #d4af37;
             font-size: 1.1em;
             font-weight: 400;
             letter-spacing: 3px;
             margin-bottom: 25px;
         }
-        .message-card p {
-            font-size: 1.1em;
+        .message-modal p {
+            font-size: 1em;
             line-height: 2;
             font-weight: 300;
             letter-spacing: 1px;
         }
-        .message-card .signature {
-            margin-top: 30px;
+        .message-modal .signature {
+            margin-top: 25px;
             color: #d4af37;
             font-style: italic;
+        }
+        .message-modal .close-btn {
+            margin-top: 30px;
+            padding: 12px 40px;
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            font-size: 0.9em;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .message-modal .close-btn:hover {
+            background: #d4af37;
+            color: #1a1a2e;
         }
         
         /* カウントダウン */
@@ -972,6 +1015,33 @@
     </style>
 </head>
 <body>
+    <!-- メッセージモーダル -->
+    <div id="messageOverlay" class="message-overlay" onclick="closeMessage(event)">
+        <div class="message-modal" onclick="event.stopPropagation()">
+            <h3>To Yukako</h3>
+            <p>
+                4年間、ずっと一緒にいてくれてありがとう。<br>
+                いつも笑顔で隣にいてくれる祐賀子に感謝しています。<br>
+                <br>
+                最近は喧嘩も減って、すごく嬉しいよ！<br>
+                家賃補助すごく助かっているよ。いつもありがとう。<br>
+                家事もやってくれてありがとう。<br>
+                <br>
+                お仕事大変だと思うけど、あんまり無理しないで、<br>
+                体調には気をつけてね。<br>
+                せゆもお仕事と家事頑張る！<br>
+                また一緒に壁打ち行こうね！<br>
+                <br>
+                これからも二人で素敵な思い出を<br>
+                たくさん作っていこうね。<br>
+                <br>
+                マレーシア、楽しもう！
+            </p>
+            <p class="signature">— with love ♡</p>
+            <button class="close-btn" onclick="closeMessage()">旅行プランを見る →</button>
+        </div>
+    </div>
+
     <!-- パスワード画面 -->
     <div id="passwordScreen" class="password-screen">
         <div class="password-box">
@@ -1004,29 +1074,6 @@
             <div class="hearts">✦ ✦ ✦</div>
         </header>
 
-        <!-- メッセージカード -->
-        <div class="message-card">
-            <h3>To Yukako</h3>
-            <p>
-                4年間、ずっと一緒にいてくれてありがとう。<br>
-                いつも笑顔で隣にいてくれる祐賀子に感謝しています。<br>
-                <br>
-                最近は喧嘩も減って、すごく嬉しいよ！<br>
-                家賃補助すごく助かっているよ。いつもありがとう。<br>
-                家事もやってくれてありがとう。<br>
-                <br>
-                お仕事大変だと思うけど、あんまり無理しないで、<br>
-                体調には気をつけてね。<br>
-                せゆもお仕事と家事頑張る！<br>
-                また一緒に壁打ち行こうね！<br>
-                <br>
-                これからも二人で素敵な思い出を<br>
-                たくさん作っていこうね。<br>
-                <br>
-                マレーシア、楽しもう！
-            </p>
-            <p class="signature">— with love ♡</p>
-        </div>
 
         <!-- カウントダウン -->
         <div class="countdown-section">
@@ -2332,11 +2379,24 @@
                 document.getElementById('mainContent').classList.remove('content-hidden');
                 // セッション中は記憶
                 sessionStorage.setItem('authenticated', 'true');
+                
+                // 初回ログイン時のみメッセージを表示
+                if (!sessionStorage.getItem('messageSeen')) {
+                    setTimeout(() => {
+                        document.getElementById('messageOverlay').classList.add('show');
+                    }, 300);
+                }
             } else {
                 errorMsg.style.display = 'block';
                 document.getElementById('passwordInput').value = '';
                 document.getElementById('passwordInput').focus();
             }
+        }
+        
+        function closeMessage(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('messageOverlay').classList.remove('show');
+            sessionStorage.setItem('messageSeen', 'true');
         }
         
         // ページ読み込み時にセッションチェック
