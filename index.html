@@ -551,7 +551,7 @@
             font-weight: bold;
         }
         
-        /* チェックリスト */
+        /* チェックリスト - インタラクティブ */
         .checklist-section {
             margin: 20px 0;
         }
@@ -559,7 +559,7 @@
             color: #1a1a2e;
             margin: 15px 0 10px;
             padding-bottom: 5px;
-            border-bottom: 2px solid #e8f4f8;
+            border-bottom: 1px solid #d4af37;
         }
         .checklist {
             columns: 2;
@@ -567,15 +567,45 @@
         }
         .checklist-item {
             break-inside: avoid;
-            padding: 8px 0;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+        .checklist-item:hover {
+            background: #f8f8f8;
+        }
+        .checklist-item.checked {
+            opacity: 0.5;
+        }
+        .checklist-item.checked span {
+            text-decoration: line-through;
+            color: #999;
         }
         .checkbox {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #159895;
+            width: 22px;
+            height: 22px;
+            border: 2px solid #d4af37;
             border-radius: 4px;
+            transition: all 0.2s;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .checklist-item.checked .checkbox {
+            background: #d4af37;
+            border-color: #d4af37;
+        }
+        .checklist-item.checked .checkbox::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
             margin-right: 10px;
             flex-shrink: 0;
         }
@@ -624,6 +654,28 @@
         }
         .tips-list li:last-child {
             border-bottom: none;
+        }
+        
+        /* マップリンク集 */
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        .map-link {
+            display: block;
+            padding: 12px 15px;
+            background: #fafafa;
+            border: 1px solid #eee;
+            text-align: center;
+            font-size: 0.9em;
+            transition: all 0.2s;
+            border-bottom: none;
+        }
+        .map-link:hover {
+            background: #1a1a2e;
+            color: white;
+            border-color: #1a1a2e;
         }
         
         /* フッター - 高級感デザイン */
@@ -1865,7 +1917,7 @@
         <section class="section">
             <h2 class="section-title">✅ 持ち物チェックリスト</h2>
             
-            <img class="image-single" src="https://images.pexels.com/photos/1282315/pexels-photo-1282315.jpeg?auto=compress&cs=tinysrgb&w=800" alt="旅行準備 パッキング">
+            <img class="image-single" src="https://images.pexels.com/photos/4247732/pexels-photo-4247732.jpeg?auto=compress&cs=tinysrgb&w=800" alt="旅行準備 パッキング">
             
             <div class="checklist-section">
                 <h4>📌 必須</h4>
@@ -1985,6 +2037,48 @@
             </ul>
         </section>
 
+        <!-- Googleマップリンク集 -->
+        <section class="section">
+            <h2 class="section-title">📍 Googleマップリンク集</h2>
+            <p style="margin-bottom: 20px; color: #666;">タップで各スポットのGoogleマップが開きます</p>
+            
+            <div class="map-links">
+                <h4 style="color: #1a1a2e; margin: 20px 0 10px; border-bottom: 1px solid #d4af37; padding-bottom: 5px;">🏝️ ペナン（2-3日目）</h4>
+                <div class="map-grid">
+                    <a href="https://www.google.com/maps/search/ペナン+ストリートアート+アルメニアンストリート" target="_blank" class="map-link">🎨 ストリートアート</a>
+                    <a href="https://www.google.com/maps/place/Khoo+Kongsi" target="_blank" class="map-link">🏛️ クーコンシー</a>
+                    <a href="https://www.google.com/maps/place/Chew+Jetty" target="_blank" class="map-link">🏠 クランジェティ</a>
+                    <a href="https://www.google.com/maps/place/Gurney+Drive+Hawker+Centre" target="_blank" class="map-link">🍜 ガーニードライブ</a>
+                    <a href="https://www.google.com/maps/place/Penang+Hill" target="_blank" class="map-link">🚠 ペナンヒル</a>
+                    <a href="https://www.google.com/maps/place/Kek+Lok+Si+Temple" target="_blank" class="map-link">🛕 極楽寺</a>
+                    <a href="https://www.google.com/maps/search/Chulia+Street+Penang" target="_blank" class="map-link">🛍️ チュリア通り</a>
+                </div>
+                
+                <h4 style="color: #1a1a2e; margin: 25px 0 10px; border-bottom: 1px solid #d4af37; padding-bottom: 5px;">🏙️ クアラルンプール（4日目）</h4>
+                <div class="map-grid">
+                    <a href="https://www.google.com/maps/place/Batu+Caves" target="_blank" class="map-link">🛕 バトゥ洞窟</a>
+                    <a href="https://www.google.com/maps/place/Petronas+Twin+Towers" target="_blank" class="map-link">🏙️ ペトロナスタワー</a>
+                    <a href="https://www.google.com/maps/place/KLCC+Park" target="_blank" class="map-link">🌳 KLCC公園</a>
+                    <a href="https://www.google.com/maps/place/Petaling+Street" target="_blank" class="map-link">🏮 チャイナタウン</a>
+                    <a href="https://www.google.com/maps/place/Central+Market+Kuala+Lumpur" target="_blank" class="map-link">🎁 セントラルマーケット</a>
+                    <a href="https://www.google.com/maps/place/Jalan+Alor" target="_blank" class="map-link">🍢 アロー通り</a>
+                </div>
+                
+                <h4 style="color: #1a1a2e; margin: 25px 0 10px; border-bottom: 1px solid #d4af37; padding-bottom: 5px;">🏨 ホテル</h4>
+                <div class="map-grid">
+                    <a href="https://www.google.com/maps/place/lyf+George+Town+Penang" target="_blank" class="map-link">🛏️ lyf ペナン</a>
+                    <a href="https://www.google.com/maps/search/Sleeping+Lion+Suites+Kuala+Lumpur" target="_blank" class="map-link">🛏️ Sleeping Lion KL</a>
+                </div>
+                
+                <h4 style="color: #1a1a2e; margin: 25px 0 10px; border-bottom: 1px solid #d4af37; padding-bottom: 5px;">✈️ 空港・交通</h4>
+                <div class="map-grid">
+                    <a href="https://www.google.com/maps/place/KLIA2" target="_blank" class="map-link">✈️ KLIA2（KL空港）</a>
+                    <a href="https://www.google.com/maps/place/Penang+International+Airport" target="_blank" class="map-link">✈️ ペナン空港</a>
+                    <a href="https://www.google.com/maps/place/KL+Sentral" target="_blank" class="map-link">🚃 KL Sentral</a>
+                </div>
+            </div>
+        </section>
+
         <!-- 最後の風景画像 -->
         <div style="width: 100%; height: 200px; background: url('https://images.pexels.com/photos/31403934/pexels-photo-31403934.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;"></div>
         
@@ -2028,6 +2122,40 @@
                 document.getElementById('mainContent').classList.remove('content-hidden');
             }
             document.getElementById('passwordInput').focus();
+            
+            // チェックリストの初期化
+            initChecklist();
+        }
+        
+        // インタラクティブチェックリスト
+        function initChecklist() {
+            const items = document.querySelectorAll('.checklist-item');
+            const saved = JSON.parse(localStorage.getItem('checklist') || '{}');
+            
+            items.forEach((item, index) => {
+                // 保存された状態を復元
+                if (saved[index]) {
+                    item.classList.add('checked');
+                }
+                
+                // クリックイベント
+                item.addEventListener('click', function(e) {
+                    // リンクの場合はチェックしない
+                    if (e.target.tagName === 'A') return;
+                    
+                    this.classList.toggle('checked');
+                    
+                    // 状態を保存
+                    const allItems = document.querySelectorAll('.checklist-item');
+                    const state = {};
+                    allItems.forEach((el, i) => {
+                        if (el.classList.contains('checked')) {
+                            state[i] = true;
+                        }
+                    });
+                    localStorage.setItem('checklist', JSON.stringify(state));
+                });
+            });
         }
     </script>
 </body>
