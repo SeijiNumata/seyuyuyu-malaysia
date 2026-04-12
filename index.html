@@ -833,6 +833,146 @@
             }
         }
 
+        /* 封筒アニメーション */
+        .envelope-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+        }
+        .envelope-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .envelope-container {
+            position: relative;
+            width: 280px;
+            height: 180px;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .envelope-body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #c9a227 0%, #d4af37 50%, #f0d875 100%);
+            border-radius: 5px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(180deg, #e8c547 0%, #d4af37 100%);
+            transform-origin: top center;
+            transition: transform 0.6s ease-in-out;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            z-index: 2;
+        }
+        .envelope-container:hover .envelope-flap,
+        .envelope-container.opened .envelope-flap {
+            transform: rotateX(180deg);
+        }
+        .envelope-container.opened .envelope-flap {
+            z-index: 0;
+        }
+        .letter {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 80%;
+            height: 90%;
+            background: #fff;
+            border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            box-sizing: border-box;
+            transform: translateY(0);
+            transition: transform 0.5s ease-in-out 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .envelope-container.opened .letter {
+            transform: translateY(-120%);
+        }
+        .letter-content {
+            text-align: center;
+            color: #1a1a2e;
+        }
+        .letter-content .letter-to {
+            font-size: 0.9em;
+            color: #d4af37;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .letter-content .letter-heart {
+            font-size: 2em;
+            color: #e74c3c;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .envelope-hint {
+            margin-top: 30px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        .envelope-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: #c0392b;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+        .envelope-seal::after {
+            content: "♡";
+            color: #fff;
+            font-size: 1.5em;
+        }
+        .envelope-container:hover .envelope-seal {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .envelope-container.opened .envelope-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
         /* メッセージモーダル */
         .message-overlay {
             position: fixed;
@@ -1038,6 +1178,24 @@
     </style>
 </head>
 <body>
+    <!-- 封筒アニメーション -->
+    <div id="envelopeOverlay" class="envelope-overlay">
+        <div class="envelope-container" onclick="openEnvelope()">
+            <div class="envelope">
+                <div class="envelope-body"></div>
+                <div class="letter">
+                    <div class="letter-content">
+                        <div class="letter-to">To Yukako</div>
+                        <div class="letter-heart">♡</div>
+                    </div>
+                </div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-seal"></div>
+            </div>
+        </div>
+        <p class="envelope-hint">タップして開く</p>
+    </div>
+
     <!-- メッセージモーダル -->
     <div id="messageOverlay" class="message-overlay" onclick="closeMessage(event)">
         <div class="message-modal" onclick="event.stopPropagation()">
@@ -2391,10 +2549,10 @@
                 // セッション中は記憶
                 sessionStorage.setItem('authenticated', 'true');
                 
-                // 初回ログイン時のみメッセージを表示
+                // 初回ログイン時のみ封筒を表示
                 if (!sessionStorage.getItem('messageSeen')) {
                     setTimeout(() => {
-                        document.getElementById('messageOverlay').classList.add('show');
+                        document.getElementById('envelopeOverlay').classList.add('show');
                     }, 300);
                 }
             } else {
@@ -2402,6 +2560,19 @@
                 document.getElementById('passwordInput').value = '';
                 document.getElementById('passwordInput').focus();
             }
+        }
+        
+        function openEnvelope() {
+            const container = document.querySelector('.envelope-container');
+            container.classList.add('opened');
+            
+            // 封筒が開いた後、手紙モーダルを表示
+            setTimeout(() => {
+                document.getElementById('envelopeOverlay').classList.remove('show');
+                setTimeout(() => {
+                    document.getElementById('messageOverlay').classList.add('show');
+                }, 300);
+            }, 1200);
         }
         
         function closeMessage(event) {
