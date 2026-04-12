@@ -829,6 +829,132 @@
             }
         }
 
+        /* メッセージカード */
+        .message-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .message-card::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: #d4af37;
+        }
+        .message-card::after {
+            content: "";
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: #d4af37;
+        }
+        .message-card h3 {
+            color: #d4af37;
+            font-size: 1.1em;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+        .message-card p {
+            font-size: 1.1em;
+            line-height: 2;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        .message-card .signature {
+            margin-top: 30px;
+            color: #d4af37;
+            font-style: italic;
+        }
+        
+        /* カウントダウン */
+        .countdown-section {
+            background: #fafafa;
+            padding: 40px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .countdown-title {
+            color: #1a1a2e;
+            font-size: 1em;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .countdown-item {
+            text-align: center;
+        }
+        .countdown-number {
+            font-size: 3em;
+            font-weight: 300;
+            color: #1a1a2e;
+            line-height: 1;
+        }
+        .countdown-label {
+            font-size: 0.8em;
+            color: #888;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+        .countdown-done {
+            font-size: 1.5em;
+            color: #d4af37;
+        }
+        
+        /* やりたいことリスト */
+        .wishlist-section {
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+            padding: 30px;
+            border-radius: 0;
+            margin: 25px 0;
+            border: 1px solid #eee;
+        }
+        .wishlist-title {
+            color: #1a1a2e;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d4af37;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        .wishlist-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+        .wishlist-item:hover {
+            background: white;
+        }
+        .wishlist-item.checked {
+            opacity: 0.5;
+        }
+        .wishlist-item.checked span {
+            text-decoration: line-through;
+            color: #999;
+        }
+        .wishlist-item .checkbox {
+            margin-right: 12px;
+        }
+        
         @media print {
             body {
                 background: white;
@@ -878,6 +1004,29 @@
             <div class="hearts">✦ ✦ ✦</div>
         </header>
 
+        <!-- メッセージカード -->
+        <div class="message-card">
+            <h3>To My Love</h3>
+            <p>
+                5年間、ずっと一緒にいてくれてありがとう。<br>
+                いつも笑顔で隣にいてくれるあなたに感謝しています。<br>
+                <br>
+                これからも二人で素敵な思い出を<br>
+                たくさん作っていこうね。<br>
+                <br>
+                マレーシア、楽しもう！
+            </p>
+            <p class="signature">— with love ♡</p>
+        </div>
+
+        <!-- カウントダウン -->
+        <div class="countdown-section">
+            <p class="countdown-title">✈️ 旅行まであと</p>
+            <div class="countdown-timer" id="countdown">
+                <!-- JavaScriptで更新 -->
+            </div>
+        </div>
+
         <!-- 旅程サマリー -->
         <section class="section">
             <h2 class="section-title">📅 旅程サマリー</h2>
@@ -910,6 +1059,72 @@
                         <div class="flight-route">クアラルンプール → 羽田</div>
                         <div class="flight-time">日曜 14:10発 → 22:35着（AirAsia X D7522）</div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 二人でやりたいことリスト -->
+        <section class="section">
+            <h2 class="section-title">💕 二人でやりたいことリスト</h2>
+            <p style="color: #888; margin-bottom: 20px;">タップでチェック！旅行中に達成しよう ✨</p>
+            
+            <div class="wishlist-section">
+                <h4 class="wishlist-title">🌅 体験</h4>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>ペナンヒルで夕日を見る</span>
+                </div>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>ペトロナスタワーの夜景を一緒に見る</span>
+                </div>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>ストリートアートの前で写真を撮る</span>
+                </div>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>バトゥ洞窟の階段を二人で登る</span>
+                </div>
+            </div>
+            
+            <div class="wishlist-section">
+                <h4 class="wishlist-title">🍜 グルメ</h4>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>屋台でアッサムラクサを食べる</span>
+                </div>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>アロー通りでサテーを食べる</span>
+                </div>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>マンゴースムージーを飲む</span>
+                </div>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>二人でドリアンに挑戦する</span>
+                </div>
+            </div>
+            
+            <div class="wishlist-section">
+                <h4 class="wishlist-title">💑 思い出</h4>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>お揃いのお土産を買う</span>
+                </div>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>現地のカフェでゆっくりする</span>
+                </div>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>たくさん写真を撮る</span>
+                </div>
+                <div class="wishlist-item" onclick="toggleWishlist(this)">
+                    <div class="checkbox"></div>
+                    <span>5年記念の特別な乾杯をする 🥂</span>
                 </div>
             </div>
         </section>
@@ -2125,6 +2340,76 @@
             
             // チェックリストの初期化
             initChecklist();
+            
+            // カウントダウンの初期化
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // やりたいことリストの初期化
+            initWishlist();
+        }
+        
+        // カウントダウン
+        function updateCountdown() {
+            const tripDate = new Date('2026-06-17T00:00:00');
+            const now = new Date();
+            const diff = tripDate - now;
+            
+            const container = document.getElementById('countdown');
+            
+            if (diff <= 0) {
+                container.innerHTML = '<p class="countdown-done">🎉 旅行中！楽しんで！ 🎉</p>';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            container.innerHTML = `
+                <div class="countdown-item">
+                    <div class="countdown-number">${days}</div>
+                    <div class="countdown-label">DAYS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number">${hours}</div>
+                    <div class="countdown-label">HOURS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number">${minutes}</div>
+                    <div class="countdown-label">MIN</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number">${seconds}</div>
+                    <div class="countdown-label">SEC</div>
+                </div>
+            `;
+        }
+        
+        // やりたいことリスト
+        function initWishlist() {
+            const saved = JSON.parse(localStorage.getItem('wishlist') || '{}');
+            const items = document.querySelectorAll('.wishlist-item');
+            items.forEach((item, index) => {
+                if (saved[index]) {
+                    item.classList.add('checked');
+                }
+            });
+        }
+        
+        function toggleWishlist(el) {
+            el.classList.toggle('checked');
+            
+            // 状態を保存
+            const items = document.querySelectorAll('.wishlist-item');
+            const state = {};
+            items.forEach((item, i) => {
+                if (item.classList.contains('checked')) {
+                    state[i] = true;
+                }
+            });
+            localStorage.setItem('wishlist', JSON.stringify(state));
         }
         
         // インタラクティブチェックリスト
