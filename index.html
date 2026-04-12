@@ -908,7 +908,8 @@
             color: #d4af37;
             font-style: italic;
         }
-        .message-modal .close-btn {
+        .message-modal .close-btn,
+        .message-modal .close-btn * {
             display: inline-block;
             margin-top: 30px;
             padding: 12px 40px;
@@ -920,15 +921,19 @@
             cursor: pointer;
             transition: all 0.3s;
             font-family: inherit;
-            text-decoration: none;
-            -webkit-text-decoration: none;
+            text-decoration: none !important;
+            -webkit-text-decoration: none !important;
+            text-decoration-line: none !important;
+            text-decoration-style: none !important;
+            border-bottom-style: solid !important;
             box-shadow: none;
             outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
         .message-modal .close-btn:hover {
             background: #d4af37;
             color: #1a1a2e;
-            text-decoration: none;
+            text-decoration: none !important;
         }
         
         /* カウントダウン */
