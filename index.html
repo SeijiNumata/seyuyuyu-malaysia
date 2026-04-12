@@ -866,9 +866,9 @@
             transform: scale(0.8);
             transition: transform 0.5s;
         }
-        .message-modal * {
-            border-bottom: none;
-            text-decoration: none;
+        .message-modal *:not(.close-btn) {
+            border-bottom: none !important;
+            text-decoration: none !important;
         }
         .message-overlay.show .message-modal {
             transform: scale(1);
