@@ -866,6 +866,10 @@
             transform: scale(0.8);
             transition: transform 0.5s;
         }
+        .message-modal * {
+            border-bottom: none;
+            text-decoration: none;
+        }
         .message-overlay.show .message-modal {
             transform: scale(1);
         }
@@ -902,6 +906,8 @@
             font-weight: 300;
             letter-spacing: 0.5px;
             margin-bottom: 15px;
+            border-bottom: none !important;
+            text-decoration: none !important;
         }
         .message-modal .signature {
             margin-top: 25px;
