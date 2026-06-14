@@ -944,6 +944,23 @@
             0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
         }
+        .envelope-skip {
+            display: block;
+            margin: 18px auto 0;
+            padding: 10px 22px;
+            background: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.85);
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 30px;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .envelope-skip:hover {
+            background: rgba(255,255,255,0.25);
+            color: #fff;
+        }
         .envelope-seal {
             position: absolute;
             top: 50%;
@@ -1194,6 +1211,7 @@
             </div>
         </div>
         <p class="envelope-hint">タップして開く</p>
+        <button class="envelope-skip" onclick="skipEnvelope(event)">スキップして旅行プランを見る →</button>
     </div>
 
     <!-- メッセージモーダル -->
@@ -2941,6 +2959,14 @@
             }
         }
         
+        // 封筒・手紙アニメをワンタップで全部スキップ
+        function skipEnvelope(event) {
+            if (event) event.stopPropagation();
+            document.getElementById('envelopeOverlay').classList.remove('show');
+            document.getElementById('messageOverlay').classList.remove('show');
+            sessionStorage.setItem('messageSeen', 'true');
+        }
+
         function openEnvelope() {
             const container = document.querySelector('.envelope-container');
             container.classList.add('opened');
