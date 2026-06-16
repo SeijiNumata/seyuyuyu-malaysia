@@ -1192,6 +1192,112 @@
                 color: #1a1a2e;
             }
         }
+        /* === 便利機能：今日ハイライト === */
+        .day-card.today-highlight {
+            box-shadow: 0 0 0 3px #e2231a, 0 8px 24px rgba(226,35,26,0.25);
+            position: relative;
+        }
+        .today-badge {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 2px 10px;
+            background: #e2231a;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 0.65em;
+            vertical-align: middle;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        /* === フローティングボタン共通 === */
+        .fab {
+            position: fixed;
+            right: 16px;
+            z-index: 9000;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            border: none;
+            color: #fff;
+            font-size: 1.4em;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s;
+        }
+        .fab:active { transform: scale(0.92); }
+        .fab-today {
+            left: 16px;
+            right: auto;
+            bottom: 86px;
+            background: linear-gradient(135deg, #e2231a, #ff5b4a);
+            display: none;
+        }
+        .fab-docs {
+            bottom: 86px;
+            background: linear-gradient(135deg, #1a5f7a, #2a9d8f);
+        }
+        /* === 書類パネル === */
+        .docs-panel {
+            position: fixed;
+            right: 16px;
+            bottom: 150px;
+            z-index: 9000;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            padding: 10px;
+            width: 230px;
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .docs-panel.open { display: flex; }
+        .docs-panel a {
+            display: block;
+            padding: 11px 12px;
+            background: #f4f7f9;
+            border-radius: 9px;
+            color: #1a1a2e;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .docs-panel a:active { background: #e3edf2; }
+        .docs-panel .docs-title {
+            font-size: 0.8em;
+            color: #888;
+            padding: 4px 6px 2px;
+            font-weight: bold;
+        }
+        /* === Grab住所コピー === */
+        .grab-copy-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .grab-copy-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 14px;
+            background: #fff;
+            border: 1px solid #d4e3ea;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.9em;
+            color: #1a1a2e;
+            transition: background 0.15s;
+        }
+        .grab-copy-btn:active { background: #eef5f8; }
+        .grab-copy-btn .gc-label { font-weight: bold; }
+        .grab-copy-btn .gc-addr { color: #777; font-size: 0.85em; display: block; margin-top: 2px; }
+        .grab-copy-btn .gc-icon { flex-shrink: 0; color: #2a9d8f; font-size: 1.1em; }
+        .grab-copy-btn.copied { background: #e8f8e8; border-color: #2a9d8f; }
     </style>
 </head>
 <body>
@@ -1240,6 +1346,17 @@
             <button onclick="checkPassword()">開く 🔓</button>
             <p class="error" id="errorMsg">パスワードが違うよ！</p>
         </div>
+    </div>
+
+    <!-- フローティング：今日へ / 書類クイックアクセス -->
+    <button class="fab fab-today" id="fabToday" onclick="scrollToToday()" title="今日の予定へ">📍</button>
+    <button class="fab fab-docs" id="fabDocs" onclick="toggleDocs()" title="書類">📁</button>
+    <div class="docs-panel" id="docsPanel">
+        <div class="docs-title">📁 書類・予約クイックアクセス</div>
+        <a href="tickets/penang-hill-eticket.pdf" target="_blank">🚠 ペナンヒル eチケット</a>
+        <a href="tickets/petronas-towers-eticket.pdf" target="_blank">🌆 ペトロナス eチケット</a>
+        <a href="https://www.airasia.com/myorders/ja/jp" target="_blank">✈️ AirAsia 予約管理</a>
+        <a href="https://imigresen-online.imi.gov.my/mdac/main" target="_blank">🛂 MDAC（入国カード）</a>
     </div>
 
     <div id="mainContent" class="container content-hidden">
@@ -2659,6 +2776,23 @@
             </ul>
         </section>
 
+        <!-- Grab用 行き先コピー -->
+        <section class="section">
+            <h2 class="section-title">📋 Grab用 行き先コピー</h2>
+            <p style="margin-bottom: 4px; color: #666;">タップで行き先名をコピー → <a href="https://www.grab.com/my/" target="_blank">Grab</a>アプリの目的地に貼り付け。英語名なので確実に検索ヒットするよ。</p>
+            <div class="grab-copy-grid">
+                <button class="grab-copy-btn" onclick="copyGrab(this, 'Hotel Jen Penang Georgetown, 1 Magazine Road, George Town, Penang')"><span><span class="gc-label">🏨 Jen ペナン（宿）</span><span class="gc-addr">1 Magazine Road, George Town</span></span><span class="gc-icon">📋</span></button>
+                <button class="grab-copy-btn" onclick="copyGrab(this, 'Sleeping Lion Suites, Bukit Bintang, Kuala Lumpur')"><span><span class="gc-label">🏨 スリーピングライオン（宿）</span><span class="gc-addr">Bukit Bintang, Kuala Lumpur</span></span><span class="gc-icon">📋</span></button>
+                <button class="grab-copy-btn" onclick="copyGrab(this, 'KLIA2, Kuala Lumpur International Airport Terminal 2')"><span><span class="gc-label">✈️ KLIA2（空港）</span><span class="gc-addr">Kuala Lumpur Intl Airport T2</span></span><span class="gc-icon">📋</span></button>
+                <button class="grab-copy-btn" onclick="copyGrab(this, 'Penang Hill Lower Station, Air Itam, Penang')"><span><span class="gc-label">🚠 ペナンヒル 山麓駅</span><span class="gc-addr">Lower Station, Air Itam</span></span><span class="gc-icon">📋</span></button>
+                <button class="grab-copy-btn" onclick="copyGrab(this, 'Kek Lok Si Temple, Air Itam, Penang')"><span><span class="gc-label">🛕 極楽寺</span><span class="gc-addr">Kek Lok Si Temple, Air Itam</span></span><span class="gc-icon">📋</span></button>
+                <button class="grab-copy-btn" onclick="copyGrab(this, 'Gurney Drive Hawker Centre, Penang')"><span><span class="gc-label">🍜 ガーニードライブ</span><span class="gc-addr">Gurney Drive Hawker Centre</span></span><span class="gc-icon">📋</span></button>
+                <button class="grab-copy-btn" onclick="copyGrab(this, 'PETRONAS Twin Towers, KLCC, Kuala Lumpur')"><span><span class="gc-label">🌆 ペトロナスタワー</span><span class="gc-addr">PETRONAS Twin Towers, KLCC</span></span><span class="gc-icon">📋</span></button>
+                <button class="grab-copy-btn" onclick="copyGrab(this, 'Jalan Alor Food Street, Bukit Bintang, Kuala Lumpur')"><span><span class="gc-label">🍢 アロー通り</span><span class="gc-addr">Jalan Alor, Bukit Bintang</span></span><span class="gc-icon">📋</span></button>
+                <button class="grab-copy-btn" onclick="copyGrab(this, 'Batu Caves, Selangor')"><span><span class="gc-label">🛕 バトゥ洞窟</span><span class="gc-addr">Batu Caves, Selangor</span></span><span class="gc-icon">📋</span></button>
+            </div>
+        </section>
+
         <!-- Googleマップリンク集 -->
         <section class="section">
             <h2 class="section-title">📍 Googleマップリンク集</h2>
@@ -2787,6 +2921,67 @@
             
             // やりたいことリストの初期化
             initWishlist();
+
+            // 今日の予定をハイライト
+            highlightToday();
+        }
+
+        // 今日のDAYカードをハイライト＆「今日へ」ボタン表示
+        let todayCardEl = null;
+        function highlightToday() {
+            const now = new Date();
+            const m = now.getMonth() + 1, d = now.getDate();
+            document.querySelectorAll('.day-card').forEach(card => {
+                const dateEl = card.querySelector('.day-date');
+                if (!dateEl) return;
+                const match = dateEl.textContent.match(/(\d+)\/(\d+)/);
+                if (match && parseInt(match[1]) === m && parseInt(match[2]) === d) {
+                    card.classList.add('today-highlight');
+                    if (!dateEl.querySelector('.today-badge')) {
+                        const badge = document.createElement('span');
+                        badge.className = 'today-badge';
+                        badge.textContent = '今日';
+                        dateEl.appendChild(badge);
+                    }
+                    todayCardEl = card;
+                }
+            });
+            // 旅行期間中のみ「今日へ」ボタンを表示
+            if (todayCardEl) document.getElementById('fabToday').style.display = 'flex';
+        }
+        function scrollToToday() {
+            if (todayCardEl) todayCardEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // 書類パネルの開閉
+        function toggleDocs() {
+            document.getElementById('docsPanel').classList.toggle('open');
+        }
+
+        // Grab用 行き先コピー
+        function copyGrab(btn, text) {
+            const done = () => {
+                const icon = btn.querySelector('.gc-icon');
+                const prev = icon.textContent;
+                btn.classList.add('copied');
+                icon.textContent = '✅';
+                setTimeout(() => { btn.classList.remove('copied'); icon.textContent = prev; }, 1500);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+            } else {
+                fallbackCopy(text, done);
+            }
+        }
+        function fallbackCopy(text, done) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); done(); } catch (e) { alert('コピーできませんでした: ' + text); }
+            document.body.removeChild(ta);
         }
         
         // カウントダウン
